@@ -5,20 +5,23 @@ export class App extends Component {
   state = {
     contacts: [],
     name: '',
+    number: '',
   };
   // Получаем значение из input и обновляем state
   handleChange = e => {
-    const { value } = e.currentTarget;
+    const { value, name } = e.currentTarget;
+    console.log(value, name);
     this.setState({
-      name: value,
+      [name]: value,
     });
   };
 
   // Сохраняем и выводим Имя пользователя
-  addContact = name => {
+  addContact = ({ name, number }) => {
     const contact = {
       id: nanoid(),
       name,
+      number,
     };
     this.setState(preState => ({
       contacts: [contact, ...preState.contacts],
@@ -28,12 +31,12 @@ export class App extends Component {
   // Получаем значение из формы
   handleSubmit = e => {
     e.preventDefault();
-    this.addContact(this.state.name);
+    this.addContact(this.state);
     this.resetForm();
   };
   // Очищаем input формы
   resetForm = () => {
-    this.setState({ name: '' });
+    this.setState({ name: '', number: '' });
   };
 
   render() {
@@ -54,12 +57,28 @@ export class App extends Component {
               onChange={this.handleChange}
             />
           </label>
+
+          <label>
+            Number
+            <input
+              type="tel"
+              name="number"
+              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+              required
+              value={this.state.number}
+              onChange={this.handleChange}
+            />
+          </label>
           <button type="submit">Add contact</button>
         </form>
+
         <h2>Contacts</h2>
         <ul></ul>
-        {contacts.map(({ id, name }) => (
-          <li key={id}>{name}</li>
+        {contacts.map(({ id, name, number }) => (
+          <li key={id}>
+            {name}: {number}
+          </li>
         ))}
       </Container>
     );
