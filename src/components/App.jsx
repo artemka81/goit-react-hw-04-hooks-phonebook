@@ -17,11 +17,21 @@ export class App extends Component {
 
   // Сохраняем контакт пользователя в state
   addContact = ({ name, number }) => {
+    const { contacts } = this.state;
+
     const contact = {
       id: nanoid(),
       name,
       number,
     };
+    if (
+      contacts.find(
+        contact => name.toLowerCase() === contact.name.toLowerCase()
+      )
+    ) {
+      alert(`${name} is already in contacts`);
+      return;
+    }
     this.setState(preState => ({
       contacts: [contact, ...preState.contacts],
     }));
