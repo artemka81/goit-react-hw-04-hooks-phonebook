@@ -1,0 +1,19 @@
+.filter {
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  width: 100%;
+  padding-top: 6px;
+}
+.filter label {
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+}
+.filter input {
+  margin: 6px 0;
+  max-width: 200px;
+  width: 100%;
+  border: 1px solid #dfdfdf;
+  padding: 4px;
+}
