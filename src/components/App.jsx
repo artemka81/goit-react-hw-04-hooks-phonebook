@@ -42,6 +42,15 @@ export class App extends Component {
     this.setState({ filter: e.currentTarget.value });
   };
 
+  // Удаляем контакт из списка
+  deleteContact = contactItemId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(
+        contact => contact.id !== contactItemId
+      ),
+    }));
+  };
+
   render() {
     const { contacts, filter } = this.state;
     const normalizeFilter = filter.toLocaleLowerCase();
@@ -57,7 +66,10 @@ export class App extends Component {
         <h2>Contacts</h2>
         <Filter value={filter} onChange={this.changeFilter} />
 
-        <ContactList contacts={visibleFilterContacts} />
+        <ContactList
+          contacts={visibleFilterContacts}
+          handleDeleteContact={this.deleteContact}
+        />
       </Container>
     );
   }
