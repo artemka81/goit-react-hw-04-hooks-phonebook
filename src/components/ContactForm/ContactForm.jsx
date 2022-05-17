@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
+import { FiPlus } from 'react-icons/fi';
 import css from './ContactForm.module.css';
 
 export class ContactForm extends React.Component {
@@ -55,7 +56,10 @@ export class ContactForm extends React.Component {
             onChange={this.handleChange}
           />
         </label>
-        <button type="submit">Add contact</button>
+        <button type="submit" className={css.btn}>
+          <FiPlus style={{ color: 'white', paddingRight: 5 }} />
+          Add contact
+        </button>
       </form>
     );
   }

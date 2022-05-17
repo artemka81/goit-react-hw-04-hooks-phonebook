@@ -8,7 +8,7 @@ export const ContactList = ({ contacts, handleDeleteContact }) => (
         id={id}
         name={name}
         number={number}
-        onDeleteContact={handleDeleteContact}
+        onDeleteContact={() => handleDeleteContact(id)}
       />
     ))}
   </ul>
