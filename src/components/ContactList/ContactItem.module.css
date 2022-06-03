@@ -1,15 +1,13 @@
 .contactItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   list-style-type: circle;
   width: 100%;
   max-width: 400px;
   font-size: 18px;
   margin-bottom: 8px;
 }
-.contactItem div {
-  display: flex;
-  justify-content: space-between;
-}
-
 .btn {
   background-color: #99c4c8;
   border: none;
